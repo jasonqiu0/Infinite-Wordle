@@ -1,9 +1,9 @@
 :root {
     --bgColor: #1d1d1d;
     --textColor: #ececec;
-    --correctColor: #6aaa64;
+    --correctColor: #78a673;
     --presentColor: #c9b458;
-    --absentColor: #787c7e;
+    --absentColor: #909091;
     --borderColor: #444;
 
 }
@@ -38,6 +38,27 @@ hr {
     justify-content: center;
     align-content: center;
 }
+
+button {
+    margin-top: 10px;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    font-size: 1.1rem;
+    scale: 1.2;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+#buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
 
 .tile {
     /* Box */
