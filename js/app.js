@@ -8,12 +8,22 @@ var row = 0;
 var col = 0;
 
 var gameOver = false;
+//var answer = "tests";
 var answer = "tests";
 answer = answer.toUpperCase();
 
 
 window.onload = function() {
-    init();
+    fetch('data/words.txt') //source: https://www.rockpapershotgun.com/wordle-past-answers
+        .then(response => response.text())
+        .then(data => {
+            const wordList = data.split(' ')
+                .map(word => word.trim().toUpperCase())
+                .filter(word => word.length === width);
+            answer = wordList[Math.floor(Math.random() * wordList.length)];
+            init(); 
+        })
+        .catch(error => console.error('Error loading word list:', error));
 }
 
 function init() {
@@ -169,10 +179,8 @@ function updateWord() {
         }
 
     }
-    
     if (correct == width) {
         gameOver = true;
         return;
     }
-    
 }
