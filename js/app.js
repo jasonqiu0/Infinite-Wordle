@@ -70,20 +70,37 @@ function init() {
 }
 
 function updateWord() {
+
+    let letterCount = {};
+    for (let i = 0; i < answer.length; i++) {
+        let letter = answer[i];
+        if (letterCount[letter]) {
+            letterCount[letter]++;
+        }
+        else {
+            letterCount[letter] = 1;
+        }
+    }
+    console.log(letterCount);
+
     let correct = 0;
     let present = 0;
     let absent = 0;
+
+    
     for (let c = 0; c < width; c++) {
         let currentTile = document.getElementById(row.toString() + "-" + c.toString());
         let letter = currentTile.innerText.toUpperCase();
-
+        console.log(letter);
         if (letter == answer[c]) {
             correct++;
             currentTile.classList.add("correct");
+            letterCount[letter]--;
         }
-        else if(answer.includes(letter)) {
+        else if(answer.includes(letter) && letterCount[letter] > 0) {
             present++;
             currentTile.classList.add("present");
+            letterCount[letter]--;
         }
         else {
             currentTile.classList.add("absent");
