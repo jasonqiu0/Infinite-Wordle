@@ -128,13 +128,14 @@ function updateWord() {
     for (let c = 0; c < width; c++) {
         let currentTile = document.getElementById(row.toString() + "-" + c.toString());
         let letter = currentTile.innerText.toUpperCase();
-        let keyLetter = letter 
+        let currKeyTile = document.getElementById("key-" + letter);
         console.log("letter : ", letter);
-        console.log("key letter : ", keyLetter);
 
         if (letter == answer[c]) {
             currentTile.classList.remove("present");
             currentTile.classList.add("correct");
+            currKeyTile.classList.remove("key-present");
+            currKeyTile.classList.add("key-correct");
             correct++;
             letterCount[letter]--;
         }
@@ -146,15 +147,22 @@ function updateWord() {
     for (let c = 0; c < width; c++) {
         let currentTile = document.getElementById(row.toString() + "-" + c.toString());
         let letter = currentTile.innerText.toUpperCase();
+        let currKeyTile = document.getElementById("key-" + letter);
         console.log("letter : ", letter);
 
         if(!currentTile.classList.contains("correct")) {
             if(answer.includes(letter) && letterCount[letter] > 0 ) {
                 currentTile.classList.add("present");
+                if(!currKeyTile.classList.contains("key-correct")) {
+                    currKeyTile.classList.add("key-present");
+                }
                 present++;
                 letterCount[letter]--;
             }
             else {
+                if(!currKeyTile.classList.contains("key-correct") && !currKeyTile.classList.contains("key-present")) {
+                    currKeyTile.classList.add("key-absent");
+                }
                 currentTile.classList.add("absent");
                 absent++;
             }
