@@ -12,7 +12,6 @@ var gameOver = false;
 var answer = "tests";
 answer = answer.toUpperCase();
 
-
 window.onload = function() {
     fetch('data/words.txt') //source: https://www.rockpapershotgun.com/wordle-past-answers
         .then(response => response.text())
@@ -28,7 +27,10 @@ window.onload = function() {
 
 function init() {
     console.log("answer : ", answer);
-
+    document.getElementById("newWordle").style.display = "none";
+    document.getElementById("newWordle").addEventListener("click", function() {
+        location.reload(); 
+    });
     // game board
     for (r = 0; r < height; r++) {
         for (c = 0; c < width; c++) {
@@ -79,6 +81,7 @@ function init() {
     // event listener
     document.addEventListener("keyup", (ev) => {
         if (gameOver) {
+            document.getElementById("newWordle").style.display = "flex";
             return;
         }
 
@@ -112,6 +115,7 @@ function init() {
         if (!gameOver && row == height) {
             gameOver = true;
             document.getElementById("answer").innerText = answer;
+            document.getElementById("newWordle").style.display = "flex";
         }
     });
 }
@@ -180,7 +184,9 @@ function updateWord() {
 
     }
     if (correct == width) {
+        document.getElementById("newWordle").style.display = "flex";
         gameOver = true;
         return;
     }
-}
+};
+
