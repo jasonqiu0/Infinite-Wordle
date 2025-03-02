@@ -1,22 +1,23 @@
 :root {
-    --background-color: #1d1d1d;
-    --text-color: #ececec;
-    --correct-color: #6aaa64;
-    --present-color: #c9b458;
-    --absent-color: #787c7e;
-    --border-color: #444;
+    --bgColor: #1d1d1d;
+    --textColor: #ececec;
+    --correctColor: #6aaa64;
+    --presentColor: #c9b458;
+    --absentColor: #787c7e;
+    --borderColor: #444;
+
 }
 
 body {
     font-family: 'Arial', sans-serif;
-    background-color: var(--background-color);
-    color: var(--text-color);
+    background-color: var(--bgColor);
+    color: var(--textColor);
     text-align: center;
 }
 
 hr {
-    border: 1px solid var(--border-color);
-    width: 50%;
+    border: 1px solid var(--borderColor);
+    width: 70%;
 }
 
 #title {
@@ -40,13 +41,13 @@ hr {
 
 .tile {
     /* Box */
-    border: 2px solid var(--border-color);
+    border: 2px solid var(--borderColor);
     width: 60px;
     height: 60px;
     margin: 2.5px;
 
     /* Text */
-    color: var(--text-color);
+    color: var(--textColor);
     font-size: 36px;
     font-weight: bold;
     text-transform: uppercase;
@@ -59,19 +60,88 @@ hr {
 }
 
 .correct {
-    background-color: var(--correct-color);
-    border-color: var(--correct-color);
+    background-color: var(--correctColor);
+    border-color: var(--correctColor);
     color: white;
 }
 
 .present {
-    background-color: var(--present-color);
-    border-color: var(--present-color);
+    background-color: var(--presentColor);
+    border-color: var(--presentColor);
     color: white;
 }
 
 .absent {
-    background-color: var(--absent-color);
-    border-color: var(--absent-color);
+    background-color: var(--absentColor);
+    border-color: var(--absentColor);
     color: white;
+}
+
+#keyboard {
+    margin-top: 50px;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold; 
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.1rem;
+    scale: 1.2;
+}
+
+.kb-row {
+    width: 400px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.key-tile {
+    width: 36px;
+    height: 50px;
+    margin: 1px;
+    border: 1px solid var(--borderColor);
+    color: var(--textColor);
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    background-color: var(--borderColor);
+}
+
+.enter-tile {
+    width: 60px;
+    height: 50px;
+    border-radius: 4px;
+    border: 1px solid var(--borderColor);
+    background-color: var(--borderColor);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.backspace-tile {
+    width: 35px;
+    height: 50px;
+    border-radius: 4px;
+    border: 1px solid var(--borderColor);
+    background-color: var(--borderColor);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.key-correct {
+    background-color: var(--correctColor);
+    border-color: var(--correctColor);
+}
+
+.key-present {
+    background-color: var(--presentColor);
+    border-color: var(--presentColor);
+}
+
+.key-absent {
+    background-color: var(--bgColor);
 }
