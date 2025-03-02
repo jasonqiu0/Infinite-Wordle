@@ -17,6 +17,7 @@ window.onload = function() {
 }
 
 function init() {
+    console.log("answer : ", answer);
     //creat board
     for (r = 0; r < height; r++) {
         for (c = 0; c < width; c++) {
@@ -87,26 +88,42 @@ function updateWord() {
     let present = 0;
     let absent = 0;
 
-    
+    // for correct letters
     for (let c = 0; c < width; c++) {
         let currentTile = document.getElementById(row.toString() + "-" + c.toString());
         let letter = currentTile.innerText.toUpperCase();
         console.log(letter);
+
         if (letter == answer[c]) {
-            correct++;
+            currentTile.classList.remove("present");
             currentTile.classList.add("correct");
+            correct++;
             letterCount[letter]--;
-        }
-        else if(answer.includes(letter) && letterCount[letter] > 0) {
-            present++;
-            currentTile.classList.add("present");
-            letterCount[letter]--;
-        }
-        else {
-            currentTile.classList.add("absent");
-            absent++;
         }
     }
+
+    console.log(letterCount);
+
+    // for present and absent letters
+    for (let c = 0; c < width; c++) {
+        let currentTile = document.getElementById(row.toString() + "-" + c.toString());
+        let letter = currentTile.innerText.toUpperCase();
+        console.log(letter);
+
+        if(!currentTile.classList.contains("correct")) {
+            if(answer.includes(letter) && letterCount[letter] > 0 ) {
+                currentTile.classList.add("present");
+                present++;
+                letterCount[letter]--;
+            }
+            else {
+                currentTile.classList.add("absent");
+                absent++;
+            }
+        }
+
+    }
+    
     if (correct == width) {
         gameOver = true;
         return;
