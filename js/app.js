@@ -18,7 +18,8 @@ window.onload = function() {
 
 function init() {
     console.log("answer : ", answer);
-    //creat board
+
+    // game board
     for (r = 0; r < height; r++) {
         for (c = 0; c < width; c++) {
             // <span id = "0-0 class = "tile"><span>
@@ -31,6 +32,41 @@ function init() {
         }
     }
 
+    // keyboard
+    let keyboard = [
+        ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
+        ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
+        ["Enter", "Z", "X", "C", "V", "B", "N", "M", "⌫"]
+    ]
+    for (i = 0; i < keyboard.length; i++) {
+        let currentRow = keyboard[i];
+        let kbRow = document.createElement("div");
+        kbRow.classList.add("kb-row");
+
+        for (j = 0; j < currentRow.length; j++) {
+            let key = currentRow[j];
+            let keyTile = document.createElement("div");
+            keyTile.innerText = key;
+
+            if (key == "Enter") {
+                keyTile.classList.add("enter-tile");
+                keyTile.id = "Enter";
+            }
+            else if (key == "⌫") {
+                keyTile.classList.add("backspace-tile");
+                keyTile.id = "Backspace";
+            }
+            else if (key >= 'A' && key <= 'Z') {
+                keyTile.classList.add("key-tile");
+                keyTile.id = "key-" + key;
+            }
+            kbRow.appendChild(keyTile);
+        }
+        document.getElementById("keyboard").appendChild(kbRow);
+    } 
+
+
+    // event listener
     document.addEventListener("keyup", (ev) => {
         if (gameOver) {
             return;
@@ -92,7 +128,9 @@ function updateWord() {
     for (let c = 0; c < width; c++) {
         let currentTile = document.getElementById(row.toString() + "-" + c.toString());
         let letter = currentTile.innerText.toUpperCase();
-        console.log(letter);
+        let keyLetter = letter 
+        console.log("letter : ", letter);
+        console.log("key letter : ", keyLetter);
 
         if (letter == answer[c]) {
             currentTile.classList.remove("present");
@@ -102,13 +140,13 @@ function updateWord() {
         }
     }
 
-    console.log(letterCount);
+    console.log("letterCount : ", letterCount);
 
     // for present and absent letters
     for (let c = 0; c < width; c++) {
         let currentTile = document.getElementById(row.toString() + "-" + c.toString());
         let letter = currentTile.innerText.toUpperCase();
-        console.log(letter);
+        console.log("letter : ", letter);
 
         if(!currentTile.classList.contains("correct")) {
             if(answer.includes(letter) && letterCount[letter] > 0 ) {
